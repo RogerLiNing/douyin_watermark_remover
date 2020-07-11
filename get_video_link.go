@@ -56,7 +56,7 @@ func getVideoLink(id string) (string,error) {
 		// 自行拼接成无水印的链接
 		videoLink = "https://aweme.snssdk.com/aweme/v1/play/?video_id=" + vid + "&ratio=720p&line=0"
 		return videoLink, nil
-		
+
 	} else {
 		return videoLink, nil
 	}
