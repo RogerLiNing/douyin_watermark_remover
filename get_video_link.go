@@ -2,7 +2,6 @@ package douyin
 
 import (
 	"encoding/json"
-	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -53,13 +52,13 @@ func getVideoLink(id string) (string,error) {
 	videoLink := ""
 
 	if len(jsonData.ItemList) > 0 {
-
 		vid := jsonData.ItemList[0].Video.Vid
 		// 自行拼接成无水印的链接
 		videoLink = "https://aweme.snssdk.com/aweme/v1/play/?video_id=" + vid + "&ratio=720p&line=0"
 		return videoLink, nil
+		
 	} else {
-		return videoLink, errors.New("无法获取视频信息")
+		return videoLink, nil
 	}
 
 }
