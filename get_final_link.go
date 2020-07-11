@@ -34,12 +34,15 @@ func getFinalVideoLink(url string) (string, error) {
 	}
 
 	response, err := client.Do(request)
-	defer response.Body.Close()
 
 	if err != nil {
 		log.Fatal(err)
 		return "", err
 	}
+
+	defer response.Body.Close()
+
+
 
 	finalLink := strings.Replace(lastUrlQuery, " ", "", -1)
 
