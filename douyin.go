@@ -38,6 +38,6 @@ func WatermarkRemover(url string) (string, error) {
 	}
 
 
-	
+
 	return finalLink, nil
 }
