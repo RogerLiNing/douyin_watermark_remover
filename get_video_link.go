@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-
 type JsonData struct {
 	ItemList []Item `json:"item_list"`
 }
@@ -20,9 +19,7 @@ type Video struct {
 	Vid string `json:"vid"`
 }
 
-
-func getVideoLink(id string) (string,error) {
-
+func getVideoLink(id string) (string, error) {
 
 	client := &http.Client{}
 	// 通过这个接口获取视频信息，其中包括带有水印的链接
@@ -30,13 +27,12 @@ func getVideoLink(id string) (string,error) {
 
 	request, err := http.NewRequest("GET", url, nil)
 
-	request.Header.Add("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1")
+	request.Header.Add("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1")
 	request.Header.Add("Accept", "*/*")
 	request.Header.Add("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
 	request.Header.Add("Connection", "keep-alive")
 
-
-	response,err := client.Do(request)
+	response, err := client.Do(request)
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
