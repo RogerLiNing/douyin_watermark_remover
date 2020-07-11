@@ -3,6 +3,9 @@
 
 ## 使用方法
 ```go
+import (
+	douyin "github.com/RogerLiNing/douyin_watermark_remover"
+)
 url, _ := WatermarkRemover("https://v.douyin.com/JNhucQF/")
 
 fmt.Println(url)
