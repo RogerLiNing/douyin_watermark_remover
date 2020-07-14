@@ -12,7 +12,7 @@ import (
 	douyin "github.com/RogerLiNing/douyin_watermark_remover"
 )
 
-url, _ := WatermarkRemover("https://v.douyin.com/JNhucQF/")
+url, _ := douyin.WatermarkRemover("https://v.douyin.com/JNhucQF/")
 
 // url 是原始视频，不包含水印。需要注意：URL只能在user-agent 为手机的打开，iPhone、Android等移动设备
 // 比如 "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
