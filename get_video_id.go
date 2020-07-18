@@ -42,8 +42,11 @@ func getVideoId(url string) (string, error) {
 		log.Fatal(err)
 		return "", err
 	}
+	var videoId string
 
-	videoId := strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")[3]
+	if len(strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")) > 3 {
+		videoId = strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")[3]
+	}
 
 	return videoId, nil
 }

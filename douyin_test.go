@@ -27,7 +27,7 @@ func TestGetAvailableDouyinLink(t *testing.T) {
 
 func TestGetUnAvailableDouyinLink(t *testing.T) {
 	t.Log("测试视频不存在的抖音链接")
-	url := "https://v.douyin.com/JNSy3pH/"
+	url := "https://v.douyin.com/JNhu000"
 	videoLink, err := WatermarkRemover(url)
 
 	if err != nil {
