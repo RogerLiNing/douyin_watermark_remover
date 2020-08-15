@@ -2,6 +2,7 @@ package douyin
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -13,6 +14,7 @@ type JsonData struct {
 
 type Item struct {
 	Video Video `json:"video"`
+	ForwardId string `json:"forward_id"`
 }
 
 type Video struct {
@@ -44,10 +46,19 @@ func getVideoLink(id string) (string, error) {
 	jsonByteData := []byte(string(body))
 
 	jsonData := JsonData{}
-	json.Unmarshal(jsonByteData, &jsonData)
+	err = json.Unmarshal(jsonByteData, &jsonData)
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	videoLink := ""
 
+
 	if len(jsonData.ItemList) > 0 {
+		if jsonData.ItemList[0].ForwardId != "0" {
+			return jsonData.ItemList[0].ForwardId, nil
+		}
+
 		vid := jsonData.ItemList[0].Video.Vid
 		// 自行拼接成无水印的链接
 		videoLink = "https://aweme.snssdk.com/aweme/v1/play/?video_id=" + vid + "&ratio=720p&line=0"

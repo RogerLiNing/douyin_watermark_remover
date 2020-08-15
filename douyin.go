@@ -1,6 +1,8 @@
 package douyin
 
-import "log"
+import (
+	"log"
+)
 
 func WatermarkRemover(url string) (string, error) {
 	id, err := getVideoId(url)

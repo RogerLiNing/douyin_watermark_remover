@@ -48,5 +48,11 @@ func getVideoId(url string) (string, error) {
 		videoId = strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")[3]
 	}
 
+	// 如果是分享类型的，需要调用一次
+	if strings.Contains(lastUrlQuery, "/share/forward/") {
+		videoId, err = getVideoLink(videoId)
+	}
+
+
 	return videoId, nil
 }
