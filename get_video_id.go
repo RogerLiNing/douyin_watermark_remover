@@ -9,6 +9,15 @@ import (
 )
 
 func getVideoId(url string) (string, error) {
+	var videoId string
+
+	if strings.Contains(url, "iesdouyin.com/share/video/") {
+		splitList := strings.Split(strings.Split(url, "?")[0], "video/")
+		videoId = strings.Replace(splitList[len(splitList) - 1], "/", "", -1)
+		return videoId, nil
+	}
+	
+	
 	client := &http.Client{}
 	request, err := http.NewRequest("GET", url, nil)
 
@@ -42,7 +51,7 @@ func getVideoId(url string) (string, error) {
 		log.Fatal(err)
 		return "", err
 	}
-	var videoId string
+
 
 	if len(strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")) > 3 {
 		videoId = strings.Split(strings.Split(lastUrlQuery, "?")[0], "/")[3]
