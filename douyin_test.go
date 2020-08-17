@@ -8,7 +8,7 @@ import (
 
 func TestGetAvailableDouyinLink(t *testing.T) {
 	t.Log("测试正常的抖音视频链接")
-	url := "https://v.douyin.com/JNhucQF/" // https://v.douyin.com/JMyLw4U/  https://v.douyin.com/JNhucQF/  https://www.iesdouyin.com/share/video/6857410503656967427/?region=CN
+	url := "https://v.douyin.com/JMyLw4U/" // https://v.douyin.com/JMyLw4U/  https://v.douyin.com/JNhucQF/  https://www.iesdouyin.com/share/video/6857410503656967427/?region=CN
 
 	videoLink, err := WatermarkRemover(url)
 

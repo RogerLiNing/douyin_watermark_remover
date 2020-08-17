@@ -5,21 +5,26 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
-func getVideoId(url string) (string, error) {
+func getVideoId(rawUrl string) (string, error) {
 	var videoId string
 
-	if strings.Contains(url, "iesdouyin.com/share/video/") {
-		splitList := strings.Split(strings.Split(url, "?")[0], "video/")
+	if strings.Contains(rawUrl, "iesdouyin.com/share/video/") {
+		u, err := url.Parse(rawUrl)
+		if err != nil {
+			return "", err
+		}
+		splitList := strings.Split(u.Path, "video/")
 		videoId = strings.Replace(splitList[len(splitList) - 1], "/", "", -1)
 		return videoId, nil
 	}
 	
 	
 	client := &http.Client{}
-	request, err := http.NewRequest("GET", url, nil)
+	request, err := http.NewRequest("GET", rawUrl, nil)
 
 	request.Header.Add("User-Agent","Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1")
 	request.Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8")
